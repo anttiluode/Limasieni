@@ -1,0 +1,13 @@
+  mirror softmax  step   400  loss 0.000  acc 1.000
+  mirror softmax  step   800  loss 0.000  acc 1.000
+  mirror softmax  step  1200  loss 0.000  acc 1.000
+G1 mirror: held-out accuracy 1.0000
+  shift  softmax  step   400  loss 0.000  acc 1.000
+  shift  softmax  step   800  loss 0.000  acc 1.000
+  shift  softmax  step  1200  loss 0.000  acc 1.000
+G1 shift: held-out accuracy 1.0000
+  dup    softmax  step   400  loss 0.001  acc 1.000
+  dup    softmax  step   800  loss 0.000  acc 1.000
+  dup    softmax  step  1200  loss 0.000  acc 1.000
+G1 dup: held-out accuracy 1.0000
+{'mirror': 1.0, 'shift': 1.0, 'dup': 1.0}

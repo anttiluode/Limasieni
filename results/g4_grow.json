@@ -1,0 +1,330 @@
+{
+ "gradient_check": {
+  "cosine": 0.9999930276413628,
+  "relative_error": 0.014365703358481278
+ },
+ "mirror": {
+  "mean": {
+   "kl_local": 0.005548663511015608,
+   "kl_exact": 0.005492002834468821,
+   "acc_teacher_attn": 1.0,
+   "acc_grown_attn": 1.0,
+   "acc_uniform_attn": 0.3020833333333333,
+   "tubes_pruned_below_1pct": 0.8763020833333334
+  },
+  "per_input": [
+   {
+    "kl_local": 0.008627267994477154,
+    "kl_exact": 0.008545392738452031,
+    "acc_teacher_attn": 1.0,
+    "acc_grown_attn": 1.0,
+    "acc_uniform_attn": 0.125,
+    "tubes_pruned_below_1pct": 0.875
+   },
+   {
+    "kl_local": 0.004615227406470696,
+    "kl_exact": 0.004565913256642854,
+    "acc_teacher_attn": 1.0,
+    "acc_grown_attn": 1.0,
+    "acc_uniform_attn": 0.5,
+    "tubes_pruned_below_1pct": 0.890625
+   },
+   {
+    "kl_local": 0.005117069579102662,
+    "kl_exact": 0.005076542420366272,
+    "acc_teacher_attn": 1.0,
+    "acc_grown_attn": 1.0,
+    "acc_uniform_attn": 0.25,
+    "tubes_pruned_below_1pct": 0.875
+   },
+   {
+    "kl_local": 0.004502897204581783,
+    "kl_exact": 0.004461642649174968,
+    "acc_teacher_attn": 1.0,
+    "acc_grown_attn": 1.0,
+    "acc_uniform_attn": 0.375,
+    "tubes_pruned_below_1pct": 0.875
+   },
+   {
+    "kl_local": 0.003868843711560441,
+    "kl_exact": 0.0038239305760125186,
+    "acc_teacher_attn": 1.0,
+    "acc_grown_attn": 1.0,
+    "acc_uniform_attn": 0.375,
+    "tubes_pruned_below_1pct": 0.875
+   },
+   {
+    "kl_local": 0.005514235857617043,
+    "kl_exact": 0.005435338791008458,
+    "acc_teacher_attn": 1.0,
+    "acc_grown_attn": 1.0,
+    "acc_uniform_attn": 0.125,
+    "tubes_pruned_below_1pct": 0.875
+   },
+   {
+    "kl_local": 0.004666624311811152,
+    "kl_exact": 0.00461262392084469,
+    "acc_teacher_attn": 1.0,
+    "acc_grown_attn": 1.0,
+    "acc_uniform_attn": 0.375,
+    "tubes_pruned_below_1pct": 0.875
+   },
+   {
+    "kl_local": 0.0063448440754522864,
+    "kl_exact": 0.00627999738499856,
+    "acc_teacher_attn": 1.0,
+    "acc_grown_attn": 1.0,
+    "acc_uniform_attn": 0.25,
+    "tubes_pruned_below_1pct": 0.875
+   },
+   {
+    "kl_local": 0.005939541971427265,
+    "kl_exact": 0.005876139756022844,
+    "acc_teacher_attn": 1.0,
+    "acc_grown_attn": 1.0,
+    "acc_uniform_attn": 0.5,
+    "tubes_pruned_below_1pct": 0.875
+   },
+   {
+    "kl_local": 0.005472509550402476,
+    "kl_exact": 0.00541824530526019,
+    "acc_teacher_attn": 1.0,
+    "acc_grown_attn": 1.0,
+    "acc_uniform_attn": 0.25,
+    "tubes_pruned_below_1pct": 0.875
+   },
+   {
+    "kl_local": 0.004401731347018866,
+    "kl_exact": 0.004354436189292566,
+    "acc_teacher_attn": 1.0,
+    "acc_grown_attn": 1.0,
+    "acc_uniform_attn": 0.5,
+    "tubes_pruned_below_1pct": 0.875
+   },
+   {
+    "kl_local": 0.007513169122265476,
+    "kl_exact": 0.0074538310255499,
+    "acc_teacher_attn": 1.0,
+    "acc_grown_attn": 1.0,
+    "acc_uniform_attn": 0.0,
+    "tubes_pruned_below_1pct": 0.875
+   }
+  ]
+ },
+ "shift": {
+  "mean": {
+   "kl_local": 0.004206114836334942,
+   "kl_exact": 0.004160417728931709,
+   "acc_teacher_attn": 1.0,
+   "acc_grown_attn": 1.0,
+   "acc_uniform_attn": 0.34375,
+   "tubes_pruned_below_1pct": 0.8763020833333334
+  },
+  "per_input": [
+   {
+    "kl_local": 0.005073857350126406,
+    "kl_exact": 0.005011302989870919,
+    "acc_teacher_attn": 1.0,
+    "acc_grown_attn": 1.0,
+    "acc_uniform_attn": 0.0,
+    "tubes_pruned_below_1pct": 0.875
+   },
+   {
+    "kl_local": 0.003944973209026109,
+    "kl_exact": 0.003914738964888538,
+    "acc_teacher_attn": 1.0,
+    "acc_grown_attn": 1.0,
+    "acc_uniform_attn": 0.5,
+    "tubes_pruned_below_1pct": 0.875
+   },
+   {
+    "kl_local": 0.006173020122082018,
+    "kl_exact": 0.0061167296338864785,
+    "acc_teacher_attn": 1.0,
+    "acc_grown_attn": 1.0,
+    "acc_uniform_attn": 0.25,
+    "tubes_pruned_below_1pct": 0.859375
+   },
+   {
+    "kl_local": 0.0025928763142553323,
+    "kl_exact": 0.0025654817590632043,
+    "acc_teacher_attn": 1.0,
+    "acc_grown_attn": 1.0,
+    "acc_uniform_attn": 0.5,
+    "tubes_pruned_below_1pct": 0.875
+   },
+   {
+    "kl_local": 0.0029976434058824647,
+    "kl_exact": 0.0029538542065062233,
+    "acc_teacher_attn": 1.0,
+    "acc_grown_attn": 1.0,
+    "acc_uniform_attn": 0.375,
+    "tubes_pruned_below_1pct": 0.890625
+   },
+   {
+    "kl_local": 0.003066744365124286,
+    "kl_exact": 0.003030399755335853,
+    "acc_teacher_attn": 1.0,
+    "acc_grown_attn": 1.0,
+    "acc_uniform_attn": 0.375,
+    "tubes_pruned_below_1pct": 0.875
+   },
+   {
+    "kl_local": 0.0035989398546913288,
+    "kl_exact": 0.0035617700319515236,
+    "acc_teacher_attn": 1.0,
+    "acc_grown_attn": 1.0,
+    "acc_uniform_attn": 0.375,
+    "tubes_pruned_below_1pct": 0.875
+   },
+   {
+    "kl_local": 0.004829106648368819,
+    "kl_exact": 0.0047820440735905296,
+    "acc_teacher_attn": 1.0,
+    "acc_grown_attn": 1.0,
+    "acc_uniform_attn": 0.125,
+    "tubes_pruned_below_1pct": 0.875
+   },
+   {
+    "kl_local": 0.00578009816288984,
+    "kl_exact": 0.005700586355692235,
+    "acc_teacher_attn": 1.0,
+    "acc_grown_attn": 1.0,
+    "acc_uniform_attn": 0.5,
+    "tubes_pruned_below_1pct": 0.890625
+   },
+   {
+    "kl_local": 0.002986451746418915,
+    "kl_exact": 0.0029465611268883187,
+    "acc_teacher_attn": 1.0,
+    "acc_grown_attn": 1.0,
+    "acc_uniform_attn": 0.5,
+    "tubes_pruned_below_1pct": 0.875
+   },
+   {
+    "kl_local": 0.005305779124740995,
+    "kl_exact": 0.005257305877554774,
+    "acc_teacher_attn": 1.0,
+    "acc_grown_attn": 1.0,
+    "acc_uniform_attn": 0.5,
+    "tubes_pruned_below_1pct": 0.875
+   },
+   {
+    "kl_local": 0.004123887732412789,
+    "kl_exact": 0.004084237971951912,
+    "acc_teacher_attn": 1.0,
+    "acc_grown_attn": 1.0,
+    "acc_uniform_attn": 0.125,
+    "tubes_pruned_below_1pct": 0.875
+   }
+  ]
+ },
+ "dup": {
+  "mean": {
+   "kl_local": 0.0032472381006072113,
+   "kl_exact": 0.003261129909217443,
+   "acc_teacher_attn": 1.0,
+   "acc_grown_attn": 1.0,
+   "acc_uniform_attn": 0.3958333333333333,
+   "tubes_pruned_below_1pct": 0.4986979166666667
+  },
+  "per_input": [
+   {
+    "kl_local": 0.0013529568491081625,
+    "kl_exact": 0.0013394605213543687,
+    "acc_teacher_attn": 1.0,
+    "acc_grown_attn": 1.0,
+    "acc_uniform_attn": 0.25,
+    "tubes_pruned_below_1pct": 0.90625
+   },
+   {
+    "kl_local": 0.004062769768844625,
+    "kl_exact": 0.004576681952079952,
+    "acc_teacher_attn": 1.0,
+    "acc_grown_attn": 1.0,
+    "acc_uniform_attn": 0.25,
+    "tubes_pruned_below_1pct": 0.71875
+   },
+   {
+    "kl_local": 0.0013584886635991324,
+    "kl_exact": 0.0013462227404986069,
+    "acc_teacher_attn": 1.0,
+    "acc_grown_attn": 1.0,
+    "acc_uniform_attn": 0.5,
+    "tubes_pruned_below_1pct": 0.8125
+   },
+   {
+    "kl_local": 0.0033985800598188374,
+    "kl_exact": 0.003621774309600285,
+    "acc_teacher_attn": 1.0,
+    "acc_grown_attn": 1.0,
+    "acc_uniform_attn": 0.375,
+    "tubes_pruned_below_1pct": 0.21875
+   },
+   {
+    "kl_local": 0.007929797913842958,
+    "kl_exact": 0.00809439418025807,
+    "acc_teacher_attn": 1.0,
+    "acc_grown_attn": 1.0,
+    "acc_uniform_attn": 0.25,
+    "tubes_pruned_below_1pct": 0.390625
+   },
+   {
+    "kl_local": 0.0037341976148428354,
+    "kl_exact": 0.0032455003316060145,
+    "acc_teacher_attn": 1.0,
+    "acc_grown_attn": 1.0,
+    "acc_uniform_attn": 0.625,
+    "tubes_pruned_below_1pct": 0.296875
+   },
+   {
+    "kl_local": 0.0027884228324662717,
+    "kl_exact": 0.0030023885432899195,
+    "acc_teacher_attn": 1.0,
+    "acc_grown_attn": 1.0,
+    "acc_uniform_attn": 0.625,
+    "tubes_pruned_below_1pct": 0.28125
+   },
+   {
+    "kl_local": 0.003841679453852406,
+    "kl_exact": 0.004157562666059624,
+    "acc_teacher_attn": 1.0,
+    "acc_grown_attn": 1.0,
+    "acc_uniform_attn": 0.625,
+    "tubes_pruned_below_1pct": 0.21875
+   },
+   {
+    "kl_local": 0.0024233970235225666,
+    "kl_exact": 0.0025819196357544025,
+    "acc_teacher_attn": 1.0,
+    "acc_grown_attn": 1.0,
+    "acc_uniform_attn": 0.375,
+    "tubes_pruned_below_1pct": 0.375
+   },
+   {
+    "kl_local": 0.006082248859258364,
+    "kl_exact": 0.005205071813368035,
+    "acc_teacher_attn": 1.0,
+    "acc_grown_attn": 1.0,
+    "acc_uniform_attn": 0.125,
+    "tubes_pruned_below_1pct": 0.84375
+   },
+   {
+    "kl_local": 0.0009403685381229882,
+    "kl_exact": 0.0009210132040085213,
+    "acc_teacher_attn": 1.0,
+    "acc_grown_attn": 1.0,
+    "acc_uniform_attn": 0.5,
+    "tubes_pruned_below_1pct": 0.203125
+   },
+   {
+    "kl_local": 0.001053949630007394,
+    "kl_exact": 0.001041569012731518,
+    "acc_teacher_attn": 1.0,
+    "acc_grown_attn": 1.0,
+    "acc_uniform_attn": 0.25,
+    "tubes_pruned_below_1pct": 0.71875
+   }
+  ]
+ }
+}

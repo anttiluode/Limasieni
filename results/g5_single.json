@@ -1,0 +1,31 @@
+{
+ "mirror": {
+  "accuracy_per_seed": [
+   1.0,
+   1.0
+  ],
+  "steps": 1200
+ },
+ "shift": {
+  "600_steps": {
+   "accuracy_per_seed": [
+    0.743408203125,
+    0.87548828125
+   ],
+   "steps": 600
+  },
+  "2500_steps": {
+   "accuracy_per_seed": [
+    0.97216796875
+   ],
+   "steps": 2500
+  }
+ },
+ "dup": {
+  "accuracy_per_seed": [
+   0.9990234375,
+   0.99267578125
+  ],
+  "steps": 600
+ }
+}

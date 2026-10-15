@@ -1,0 +1,10 @@
+  shift  single   step   300  loss 0.659  acc 0.649
+  shift  single   step   600  loss 0.491  acc 0.767
+  shift  single   step   300  loss 0.536  acc 0.774
+  shift  single   step   600  loss 0.310  acc 0.878
+G5 single   shift  held-out acc per seed [0.743408203125, 0.87548828125]
+  dup    single   step   300  loss 0.131  acc 0.957
+  dup    single   step   600  loss 0.005  acc 0.998
+  dup    single   step   300  loss 0.152  acc 0.960
+  dup    single   step   600  loss 0.025  acc 0.994
+G5 single   dup    held-out acc per seed [0.9990234375, 0.99267578125]

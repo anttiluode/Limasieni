@@ -1,0 +1,4 @@
+local rule vs exact gradient: cosine 0.999993, relative error 0.0144
+mirror {'kl_local': 0.0055, 'kl_exact': 0.0055, 'acc_teacher_attn': 1.0, 'acc_grown_attn': 1.0, 'acc_uniform_attn': 0.3021, 'tubes_pruned_below_1pct': 0.8763}
+shift {'kl_local': 0.0042, 'kl_exact': 0.0042, 'acc_teacher_attn': 1.0, 'acc_grown_attn': 1.0, 'acc_uniform_attn': 0.3438, 'tubes_pruned_below_1pct': 0.8763}
+dup {'kl_local': 0.0032, 'kl_exact': 0.0033, 'acc_teacher_attn': 1.0, 'acc_grown_attn': 1.0, 'acc_uniform_attn': 0.3958, 'tubes_pruned_below_1pct': 0.4987}

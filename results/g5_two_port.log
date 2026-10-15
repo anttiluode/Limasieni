@@ -1,0 +1,9 @@
+  mirror two_port step   300  loss 0.000  acc 1.000
+  mirror two_port step   600  loss 0.000  acc 1.000
+G5 two_port mirror held-out acc per seed [1.0]
+  shift  two_port step   300  loss 0.000  acc 1.000
+  shift  two_port step   600  loss 0.000  acc 1.000
+G5 two_port shift  held-out acc per seed [1.0]
+  dup    two_port step   300  loss 0.002  acc 1.000
+  dup    two_port step   600  loss 0.000  acc 1.000
+G5 two_port dup    held-out acc per seed [1.0]
