@@ -1,0 +1,8 @@
+  recall window4  step   500  loss 0.898  acc 0.730
+  recall window4  step  1000  loss 0.006  acc 0.988
+  recall window4  step  1500  loss 0.001  acc 1.000
+  recall window4  step  2000  loss 0.000  acc 1.000
+  recall window4  step  2500  loss 0.000  acc 1.000
+held-out recall accuracy: 1.0
+mean log-resistance query->its own pairs: 3.070602763108967  lowest log-resistance query->any other pair: 3.997206578435819
+saved results/g8_window4.png

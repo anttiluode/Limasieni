@@ -1,0 +1,9 @@
+  recall static   step   300  loss 1.610  acc 0.371
+  recall static   step   600  loss 1.581  acc 0.359
+  recall static   step   900  loss 1.422  acc 0.359
+  recall static   step  1200  loss 1.469  acc 0.332
+  recall static   step  1500  loss 1.430  acc 0.371
+  recall static   step  1800  loss 1.398  acc 0.371
+  recall static   step  2100  loss 1.315  acc 0.398
+  recall static   step  2400  loss 1.169  acc 0.418
+G5 static   recall held-out acc per seed [0.427734375]

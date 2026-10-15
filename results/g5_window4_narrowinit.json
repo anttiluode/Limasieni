@@ -1,0 +1,8 @@
+{
+ "recall": {
+  "accuracy_per_seed": [
+   0.548828125
+  ],
+  "steps": 2500
+ }
+}

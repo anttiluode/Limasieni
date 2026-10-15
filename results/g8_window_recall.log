@@ -1,0 +1,9 @@
+  recall window   step   300  loss 1.328  acc 0.523
+  recall window   step   600  loss 0.647  acc 0.684
+  recall window   step   900  loss 0.534  acc 0.711
+  recall window   step  1200  loss 0.563  acc 0.707
+  recall window   step  1500  loss 0.559  acc 0.715
+  recall window   step  1800  loss 0.550  acc 0.762
+  recall window   step  2100  loss 0.465  acc 0.719
+  recall window   step  2400  loss 0.486  acc 0.719
+G5 window   recall held-out acc per seed [0.72265625]

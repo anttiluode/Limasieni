@@ -1,0 +1,9 @@
+  recall softmax  step   300  loss 1.598  acc 0.363
+  recall softmax  step   600  loss 0.634  acc 0.754
+  recall softmax  step   900  loss 0.001  acc 1.000
+  recall softmax  step  1200  loss 0.000  acc 1.000
+  recall softmax  step  1500  loss 0.000  acc 1.000
+  recall softmax  step  1800  loss 0.000  acc 1.000
+  recall softmax  step  2100  loss 0.000  acc 1.000
+  recall softmax  step  2400  loss 0.000  acc 1.000
+G5 softmax  recall held-out acc per seed [1.0]

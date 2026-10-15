@@ -1,0 +1,14 @@
+{
+ "dup": {
+  "accuracy_per_seed": [
+   0.998779296875
+  ],
+  "steps": 800
+ },
+ "recall": {
+  "accuracy_per_seed": [
+   0.72265625
+  ],
+  "steps": 2500
+ }
+}
