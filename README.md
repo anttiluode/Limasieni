@@ -1,5 +1,7 @@
 # Limasieni — can a slime mold grow a transformer's attention?
 
+![pic](results/summary.png)
+
 *Limasieni* is Finnish for slime mold.
 
 A tiny transformer is trained on three toy tasks. A *Physarum*-style flow network
