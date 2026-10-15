@@ -19,6 +19,7 @@ python g2_fit_layouts.py       # how well can each network layout copy the matri
 python g4_grow.py              # grow the two-port network with the local rule
 python g6_anneal.py            # unsupervised Physarum on the transformer's attention
 python g7_one_network.py       # one grown network for all inputs
+python g9_local_recall.py local 1   # recall by a circuit alone, local rule (~35 s)
 python g5_end_to_end.py single 600 2   # train the transformer WITH slime attention
 python make_figures.py
 python gui.py                  # watch it grow
@@ -207,14 +208,60 @@ content well enough to solve recall perfectly, while the same network without th
 dependence stays near 40%.
 
 Caveats:
-- It is trained **end to end by backprop**, not grown by the local free/nudged rule. Window
-  tubes are nonlinear, so the next gate is nonlinear equilibrium propagation, which is
-  known to work for nonlinear resistive networks (Kendall et al. 2020).
+- It is trained **end to end by backprop**, not grown by the local free/nudged rule.
+  G9 removes that caveat for the routing circuit.
 - A window tube is a distance kernel. Distance-based attention exists in ML; what is new
   here is only that a series chain of bias-matched elements gives it as small-signal
   physics, with one shared bias table for both roles (no separate query and key maps).
 - It is sensitive to the starting width: too narrow and distant pairs feel no gradient.
 - Two seeds, toy scale.
+
+### G9 — recall by a circuit alone, learned by a local rule
+
+G8 still trained a whole transformer by backprop. G9 drops everything except the circuit
+(`recall_circuit.py`):
+
+- each token has a query port and a key port; tubes are four-pin window chains as in G8;
+- each key port drains into a **value bus**: pair tokens into the bus of their value,
+  the query token into a null bus;
+- one unit of current is injected at the query port; the answer is the bus that
+  receives the most current.
+
+No embeddings, no value projection, no MLP. The only learned things are the tube
+positional terms `theta` (8x8), four bias pins per token value, and the window width.
+
+Learning is centred equilibrium propagation. Free phase: inject and settle. Nudged
+phases: pull the bus currents weakly toward the target (+beta and -beta). Each tube uses
+only its own pressure drops, `dL/dC_e = [dv_e(+beta)^2 - dv_e(-beta)^2] / (4 beta)`, and
+each window element turns that into a nudge for the two pins it touches. Given the bias
+voltages the circuit is linear in the signal, so this is exact EP:
+`test_local_rule_equals_exact_gradient_for_every_parameter` gives cosine > 0.9999 for
+theta, the pins and the width.
+
+| arm | held-out recall (512 sequences) |
+|---|---|
+| **local rule**, seeds 1, 2, 3 | **0.967, 0.996, 1.000** |
+| exact gradient, seed 1 (same batches) | 0.967 |
+| local rule, positional tubes only (no content) | 0.379, 0.387 |
+| chance | 0.167 |
+
+![g9](results/g9_local_recall.png)
+
+- The local rule and the exact gradient land on the same 0.967 for seed 1, so that
+  plateau is the loss landscape, not the rule: three query keys (4, 6, 9) are left with
+  pin clusters that are not fully separated from their neighbours.
+- The content-free circuit beats chance only by voting for the value that occurs most
+  often among the seven pairs.
+- In the trained circuit (seed 3) almost all injected current lands on the correct
+  value bus and almost none on the null bus; the tube map is block-diagonal, one block
+  per key.
+- Training took about 35 seconds on one CPU core here (3000 steps, batch 32).
+
+**What is local and what is not.** Every tube and window element computes its update
+from its own voltages. The pins of all ports showing the same token value share one
+register, so a pin's update is summed over every place that token value appears: weight
+sharing, like a convolution kernel, and the one step that is not spatially local. The
+target is supplied from outside during the nudged phase, as in all supervised learning.
 
 ## Ledger
 
@@ -253,5 +300,7 @@ Caveats:
 | `physarum.py` | free/nudged potentials, local rule, gradient check, growth loop |
 | `g1`–`g7` scripts | the gates above (G8 runs through `g5_end_to_end.py KIND STEPS SEEDS TASK`), results in `results/` |
 | `g8_inspect.py` | trains window4 on recall, saves it, draws the learned tube conductances |
+| `recall_circuit.py` | G9's pure circuit: window tubes, value buses, local free/nudged rule, exact-gradient check |
+| `g9_local_recall.py`, `g9_figure.py` | G9 arms (`local` / `exact` / `static`, seed, steps) and its figure |
 | `gui.py` | live growth: tubes, flow from a chosen query, teacher vs slime matrices, KL curve |
 | `tests/` | the identity, conservation, the two theorems, the gradient check |
