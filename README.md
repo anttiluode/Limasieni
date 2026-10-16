@@ -20,6 +20,8 @@ python g4_grow.py              # grow the two-port network with the local rule
 python g6_anneal.py            # unsupervised Physarum on the transformer's attention
 python g7_one_network.py       # one grown network for all inputs
 python g9_local_recall.py local 1   # recall by a circuit alone, local rule (~35 s)
+python g10_squeeze.py twin 1 1      # one squeeze run (~20 s); STRUCTURE PINS SEED [INIT OPT LR STEPS]
+python g10_figure.py                # aggregate results/g10/ and draw the G10 figure
 python g5_end_to_end.py single 600 2   # train the transformer WITH slime attention
 python make_figures.py
 python gui.py                  # watch it grow
@@ -263,6 +265,105 @@ register, so a pin's update is summed over every place that token value appears:
 sharing, like a convolution kernel, and the one step that is not spatially local. The
 target is supplied from outside during the nudged phase, as in all supervised learning.
 
+### G10 — squeeze test: do units broaden along task structure, or pack arbitrarily?
+
+Prompted by Goodfire's [Neural Networks Are Already Clean](https://already-clean.goodfire.com/)
+(Nick Cammarata, a working hypothesis). It argues that mixed units mostly come from
+*recursive generalization* (a unit broadens along related features) rather than
+*superposition* (unrelated features packed together), and that squeezing a layer makes
+its units broader, not superposed. The G9 circuit has no hidden mechanism to interpret,
+so the two accounts can be told apart with the ground truth known.
+
+**Setup** (`g10_squeeze.py`). 14 keys, 6 values, 7 pairs + 1 query, G9's circuit and local
+free/nudged rule. Tokens are bare ids, so "related" can only come from task statistics:
+
+- `arbitrary`: the 7 keys of a sequence are drawn at random, so every two keys co-occur.
+- `twin`: keys come in 7 twin pairs and a sequence holds exactly one member of each, so
+  twins never co-occur and confusing them costs nothing.
+
+The squeeze: each token gets 1, 2 or 4 bias pins clipped to [-1, 1], and the window width
+is fixed at 0.25, so one pin has room for about 7 well separated positions, not 14 (width
+chosen by a short seed-1 sweep). All pins start tiny (scale 0.01): every key starts in one
+cluster and has to split. Optimiser: Adam, and plain gradient descent as a second arm.
+Four seeds per arm. Every run's key-pin trajectory is saved.
+
+**Accuracy** (held-out recall, 512 sequences, mean of 4 seeds)
+
+| pins | twin keys | arbitrary keys | twin, plain descent | arbitrary, plain descent | twin-trained, tested on arbitrary sequences |
+|---|---|---|---|---|---|
+| 1 | 0.933 | 0.846 | 0.947 | 0.818 | 0.833 (plain: 0.815) |
+| 2 | 0.997 | 0.999 | – | – | 0.924 |
+| 4 | 1.000 | 1.000 | 1.000 | 1.000 | 0.996 (plain: 0.937) |
+
+**Which keys share a position.** Two keys count as merged when the log series resistance
+between their pin sets is below 1 (conductance within e^-1 of a perfect match). Counts over
+4 seeds; each seed has 7 twin pairs and 84 other pairs.
+
+| arm | twin pairs merged | other pairs merged |
+|---|---|---|
+| twin, 1 pin, Adam | 15/28 | 26/336 |
+| twin, 1 pin, plain descent | 19/28 | 14/336 |
+| twin, 1 pin, scattered start | 16/28 | 30/336 |
+| arbitrary, 1 pin, Adam | 3/28 | 32/336 |
+| arbitrary, 1 pin, plain descent | 1/28 | 33/336 |
+| twin, 2 pins, Adam | 11/28 | 0/336 |
+| twin, 4 pins, Adam | 4/28 | 0/336 |
+| twin, 4 pins, plain descent | 11/28 | 0/336 |
+
+Merged twins really sit at one point: their counts are identical at thresholds 0.5, 1 and 2.
+The other-pair counts grow with the threshold, so most of those are near neighbours. At the
+strict threshold 0.5, costly pairs share a point 10/336 and 8/336 times in the twin arms
+(Adam, plain) against 25/336 and 26/336 with arbitrary keys.
+
+![g10](results/g10_squeeze.png)
+
+What came out:
+
+1. **The squeeze broadens along structure.** With one pin, a position that has to hold two
+   keys holds a twin pair 6 to 16 times more often than any other pair, in every seed of
+   every twin arm. The broad unit is functional: the twin-trained circuit drops to
+   0.83 / 0.82 on sequences where twins appear together.
+2. **Without structure, the squeeze packs.** With arbitrary keys the merges are spread
+   evenly (the twin labels mean nothing there: 3/28 against 32/336) and accuracy falls to
+   0.82-0.85. Packing of unrelated keys is what the squeeze produces when there is nothing
+   related to merge. When twin structure is available, strict co-location of costly pairs
+   drops from about 7.5% to about 3%.
+3. **Broad units form by never splitting.** From the single starting cluster, the unit that
+   peels off is the twin pair. Under plain descent none of the 19 merged twin pairs was ever
+   apart during training; under Adam 13 of 15 were never apart (the two exceptions split
+   and rejoined, both in seed 1, bottom right of the figure).
+4. **Tight capacity stages the splitting.** From the first split to six or more separated
+   groups takes 125-375 steps with one pin (plain descent; 50-400 with Adam), and at most
+   75 steps with four pins under either optimiser, often within one 25-step recording
+   interval. The one-pin
+   curves pass through intermediate group counts, e.g. 1 -> 2 -> 3 -> 5 -> 7. Twin keys reach six
+   groups sooner than arbitrary keys. This resembles the progressive differentiation of
+   Saxe, McClelland & Ganguli (PNAS 2019), here appearing only when capacity is short.
+5. **Spare capacity keeps merges the task never forbade.** With four pins nothing forces
+   twins apart, and 11/28 (plain) or 4/28 (Adam) still share a position; the plain-descent
+   circuits then drop to 0.937 on arbitrary sequences. "Clean" here means aligned with the
+   distinctions the training distribution asks for, which is also what makes it brittle
+   under a shift.
+6. **Starting from one cluster matters.** A scattered start (pins N(0, 0.5)) finds the same
+   twin enrichment (16/28 against 30/336) but learns worse: 0.743 with one pin and 0.900 with
+   four, against 0.933 and 1.000 from one cluster. Scattered tokens start outside each
+   other's windows and get no gradient, the same mechanism as G8's width sensitivity.
+
+What this does and does not say about the Goodfire hypothesis:
+
+- At toy scale it supports the distinction Cammarata draws: where a task has interchangeable
+  units, squeezing broadens units along that structure, and the broad units come from splits
+  that never divide what the task does not need divided. Arbitrary packing appears where
+  there is no structure to use.
+- It cannot say how much real data looks like the twin case rather than the arbitrary
+  case. That is the empirical question his audits address. Relatedness here is defined by
+  co-occurrence statistics because the tokens have no input features.
+- Four seeds per arm. Pooled Fisher tests (twin enrichment p ~ 1e-8 at one pin, p = 0.52 for
+  the arbitrary control) are descriptive only, since pairs within a run are not independent;
+  the robust statement is that enrichment held in every seed of every twin arm.
+- The `rejoin_events` field in the run files counts threshold crossings and is dominated by
+  the +-0.05 jitter of pin voltages near the threshold. It is not used above.
+
 ## Ledger
 
 **Verified**
@@ -302,5 +403,6 @@ target is supplied from outside during the nudged phase, as in all supervised le
 | `g8_inspect.py` | trains window4 on recall, saves it, draws the learned tube conductances |
 | `recall_circuit.py` | G9's pure circuit: window tubes, value buses, local free/nudged rule, exact-gradient check |
 | `g9_local_recall.py`, `g9_figure.py` | G9 arms (`local` / `exact` / `static`, seed, steps) and its figure |
+| `g10_squeeze.py`, `g10_figure.py` | G10 squeeze runs (twin / arbitrary keys, 1-4 pins, Adam / plain descent) and the aggregate figure; per-run results and pin trajectories in `results/g10/` |
 | `gui.py` | live growth: tubes, flow from a chosen query, teacher vs slime matrices, KL curve |
 | `tests/` | the identity, conservation, the two theorems, the gradient check |

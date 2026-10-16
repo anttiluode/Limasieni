@@ -1,0 +1,8 @@
+arbitrary_p1_s1_gd {'acc_on_own_structure': 0.806640625, 'acc_on_twin': 0.8125, 'acc_on_arbitrary': 0.806640625, 'twin_pairs_merged': 0.0, 'other_pairs_merged': 0.10714285714285714, 'rejoin_events': 148} groups: 5
+arbitrary_p1_s2_gd {'acc_on_own_structure': 0.8046875, 'acc_on_twin': 0.794921875, 'acc_on_arbitrary': 0.8046875, 'twin_pairs_merged': 0.14285714285714285, 'other_pairs_merged': 0.07142857142857142, 'rejoin_events': 143} groups: 7
+arbitrary_p1_s3_gd {'acc_on_own_structure': 0.8515625, 'acc_on_twin': 0.8046875, 'acc_on_arbitrary': 0.8515625, 'twin_pairs_merged': 0.0, 'other_pairs_merged': 0.09523809523809523, 'rejoin_events': 161} groups: 6
+arbitrary_p1_s4_gd {'acc_on_own_structure': 0.80859375, 'acc_on_twin': 0.810546875, 'acc_on_arbitrary': 0.80859375, 'twin_pairs_merged': 0.0, 'other_pairs_merged': 0.11904761904761904, 'rejoin_events': 157} groups: 5
+arbitrary_p4_s1_gd {'acc_on_own_structure': 1.0, 'acc_on_twin': 1.0, 'acc_on_arbitrary': 1.0, 'twin_pairs_merged': 0.0, 'other_pairs_merged': 0.0, 'rejoin_events': 0} groups: 14
+arbitrary_p4_s2_gd {'acc_on_own_structure': 1.0, 'acc_on_twin': 1.0, 'acc_on_arbitrary': 1.0, 'twin_pairs_merged': 0.0, 'other_pairs_merged': 0.0, 'rejoin_events': 1} groups: 14
+arbitrary_p4_s3_gd {'acc_on_own_structure': 1.0, 'acc_on_twin': 1.0, 'acc_on_arbitrary': 1.0, 'twin_pairs_merged': 0.0, 'other_pairs_merged': 0.0, 'rejoin_events': 2} groups: 14
+arbitrary_p4_s4_gd {'acc_on_own_structure': 1.0, 'acc_on_twin': 1.0, 'acc_on_arbitrary': 1.0, 'twin_pairs_merged': 0.0, 'other_pairs_merged': 0.0, 'rejoin_events': 1} groups: 14

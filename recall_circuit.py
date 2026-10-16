@@ -31,18 +31,19 @@ from __future__ import annotations
 import numpy as onp
 
 N, PINS, G, NBUS = 8, 4, 20.0, 7
+KEYS = 12          # key tokens are 0..KEYS-1; pair tokens KEYS + 6*key + value (G10 sets 14)
 QUERY = N - 1
 
 
 def bus_of(x):
     c = onp.full(N, NBUS - 1)
-    m = x >= 12
-    c[m] = (x[m] - 12) % 6
+    m = x >= KEYS
+    c[m] = (x[m] - KEYS) % 6
     return c
 
 
-def init(rng, vocab=84, w0=4.0):
-    return {"theta": onp.zeros((N, N)), "bias": rng.normal(0, 1, (vocab, PINS)),
+def init(rng, vocab=84, w0=4.0, pins=PINS, scale=1.0):
+    return {"theta": onp.zeros((N, N)), "bias": rng.normal(0, scale, (vocab, pins)),
             "logw": onp.array([onp.log(w0)])}
 
 
